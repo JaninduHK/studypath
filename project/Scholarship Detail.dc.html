@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF7F2; color: #14141A; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #C8102E; text-decoration: none; }
+  a:hover { color: #14141A; }
+  @keyframes popIn { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  ::selection { background: #FFCE00; color: #14141A; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#FAF7F2">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(250,247,242,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,20,26,0.09)">
+  <div style="max-width:1320px;margin:0 auto;padding:12px 28px;min-height:72px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px">
+    <a href="Homepage.dc.html" style="display:flex;align-items:center;gap:10px;color:#14141A">
+      <span style="display:flex;flex-direction:column;width:26px;height:26px;border-radius:7px;overflow:hidden;box-shadow:0 1px 0 rgba(20,20,26,0.15)">
+        <span style="flex:1;background:#14141A"></span>
+        <span style="flex:1;background:#C8102E"></span>
+        <span style="flex:1;background:#FFCE00"></span>
+      </span>
+      <span style="font-family:'Google Sans','Outfit',system-ui,sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.025em">Studienpfad</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px 20px;margin-left:auto">
+      <a href="Scholarship Directory.dc.html" style="color:#C8102E;font-size:14.5px;font-weight:700;white-space:nowrap">Scholarships</a>
+      <a href="Homepage.dc.html#advisers" style="color:#14141A;font-size:14.5px;font-weight:600;white-space:nowrap" style-hover="color:#C8102E">Find an Adviser</a>
+      <a href="Homepage.dc.html#cv" style="color:#14141A;font-size:14.5px;font-weight:600;white-space:nowrap" style-hover="color:#C8102E">CV Builder</a>
+      <a href="Homepage.dc.html#guides" style="color:#14141A;font-size:14.5px;font-weight:600;white-space:nowrap" style-hover="color:#C8102E">Application Guides</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <button aria-label="Search" title="Search" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(20,20,26,0.12);border-radius:999px;background:#fff;cursor:pointer" style-hover="border-color:#14141A;background:#FFCE00">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14141A" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      </button>
+      <button onClick="{{ cycleLang }}" aria-label="Language: {{ lang }}" title="Language: {{ lang }}" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(20,20,26,0.12);background:#fff;border-radius:999px;cursor:pointer" style-hover="border-color:#14141A;background:#FFCE00">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14141A" stroke-width="1.9"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"></path></svg>
+      </button>
+      <span style="display:flex;align-items:center;gap:9px;padding:5px 12px 5px 5px;border:1px solid rgba(20,20,26,0.12);border-radius:999px;background:#fff">
+        <span style="width:28px;height:28px;border-radius:99px;background:#14141A;color:#FFCE00;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800">AO</span>
+        <span style="font-size:13.5px;font-weight:700;white-space:nowrap">Amara</span>
+      </span>
+    </div>
+  </div>
+</header>
+
+<div id="top" style="max-width:1320px;margin:0 auto;padding:22px 28px 0">
+  <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#6B6B76;flex-wrap:wrap">
+    <a href="Homepage.dc.html" style="color:#6B6B76;font-weight:600">Home</a><span>/</span>
+    <a href="Scholarship Directory.dc.html" style="color:#6B6B76;font-weight:600">Scholarships</a><span>/</span>
+    <a href="Scholarship Directory.dc.html" style="color:#6B6B76;font-weight:600">DAAD</a><span>/</span>
+    <span style="color:#14141A;font-weight:700">DAAD EPOS</span>
+  </div>
+</div>
+
+<div style="max-width:1320px;margin:0 auto;padding:20px 28px 80px;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,358px);gap:30px;align-items:start">
+
+  <main style="min-width:0;display:flex;flex-direction:column;gap:22px">
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:#FDECEF;color:#C8102E;font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:99px">
+          <span style="width:6px;height:6px;border-radius:99px;background:#C8102E"></span>OPEN · CLOSING SOON
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:#F4FBF5;border:1px solid #CFE9D4;color:#1B6B36;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:99px">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#1B6B36" stroke-width="3"><path d="M20 6L9 17l-5-5"></path></svg>
+          Verified against daad.de · 3 Sept 2026
+        </span>
+      </div>
+      <div style="display:flex;gap:18px;align-items:flex-start;margin-top:18px;flex-wrap:wrap">
+        <div style="width:62px;height:62px;border-radius:16px;background:#F3EFE8;display:flex;align-items:center;justify-content:center;font-family:'Google Sans','Outfit',sans-serif;font-size:21px;font-weight:600;flex-shrink:0">DA</div>
+        <div style="flex:1;min-width:240px">
+          <h1 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:clamp(28px,3vw,38px);line-height:1.1;letter-spacing:-0.03em;margin:0;text-wrap:pretty">DAAD EPOS — Development-Related Postgraduate Courses</h1>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-size:15px;font-weight:700">Deutscher Akademischer Austauschdienst (DAAD)</span>
+            <span style="color:#6B6B76">·</span>
+            <a href="#sources" style="font-size:14px;font-weight:700">Official provider page ↗</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:9px;margin-top:20px;flex-wrap:wrap">
+        <button onClick="{{ onSave }}" style="display:flex;align-items:center;gap:8px;border:1.5px solid {{ saveBorder }};background:{{ saveBg }};color:#14141A;border-radius:999px;padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="{{ saveFill }}" stroke="{{ saveStroke }}" stroke-width="2"><path d="M6 3h12v18l-6-4.5L6 21z"></path></svg>
+          {{ saveLabel }}
+        </button>
+        <button onClick="{{ onCompare }}" style="display:flex;align-items:center;gap:8px;border:1.5px solid {{ cmpBorder }};background:{{ cmpBg }};color:{{ cmpFg }};border-radius:999px;padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 18V7M10 18V4M16 18v-8M22 18h-20"></path></svg>
+          {{ cmpLabel }}
+        </button>
+        <button onClick="{{ toggleShare }}" style="display:flex;align-items:center;gap:8px;border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:999px;padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#14141A" stroke-width="2.2"><path d="M12 3v12M8 7l4-4 4 4M5 15v5h14v-5"></path></svg>
+          Share
+        </button>
+        <sc-if value="{{ shareOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:7px;align-items:center;animation:fade .2s ease both">
+            <sc-for list="{{ shareTargets }}" as="t" hint-placeholder-count="4">
+              <span style="background:#F1ECE4;color:#14141A;font-size:12.5px;font-weight:700;padding:10px 13px;border-radius:999px;cursor:pointer">{{ t.label }}</span>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px">
+      <sc-for list="{{ keyFacts }}" as="k" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:16px;padding:16px 17px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:#6B6B76">{{ k.label }}</div>
+          <div style="font-size:15.5px;font-weight:800;margin-top:7px;line-height:1.35;color:{{ k.fg }}">{{ k.value }}</div>
+          <div style="font-size:12.5px;color:#6B6B76;margin-top:4px">{{ k.sub }}</div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="background:#14141A;color:#fff;border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="width:72px;height:72px;border-radius:99px;border:5px solid #FFCE00;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font-size:19px;font-weight:800;line-height:1">{{ matchPct }}</span>
+          <span style="font-size:9.5px;font-weight:700;color:rgba(255,255,255,0.65)">MATCH</span>
+        </div>
+        <div style="flex:1;min-width:220px">
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;color:#FFCE00">YOUR ELIGIBILITY RESULT</div>
+          <div style="font-family:'Google Sans','Outfit',sans-serif;font-size:23px;font-weight:600;letter-spacing:-0.025em;margin-top:7px">You meet 5 of 6 core requirements</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.72);margin-top:5px">Based on your profile — BEng Mechanical Engineering, 2:1, Nigeria, IELTS 7.0, 2 years at Lagos Water Corp.</div>
+        </div>
+      </div>
+      <div style="margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+        <sc-for list="{{ eligibilityGroups }}" as="g" hint-placeholder-count="3">
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:16px;padding:17px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="width:18px;height:18px;border-radius:99px;background:{{ g.dotBg }};color:{{ g.dotFg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">{{ g.mark }}</span>
+              <span style="font-size:13px;font-weight:800;letter-spacing:0.04em;color:{{ g.dotBg }}">{{ g.title }}</span>
+            </div>
+            <div style="margin-top:12px;display:flex;flex-direction:column;gap:9px">
+              <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+                <div style="font-size:13.5px;line-height:1.45;color:rgba(255,255,255,0.86)">{{ i.text }}</div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ g.hasAction }}" hint-placeholder-val="{{ false }}">
+              <a href="Homepage.dc.html#match" style="display:inline-block;margin-top:14px;background:#FFCE00;color:#14141A;font-size:12.5px;font-weight:800;padding:8px 13px;border-radius:99px">{{ g.actionLabel }}</a>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.14);display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:13.5px;color:rgba(255,255,255,0.7)">Not signed in? Run the free check instead —</span>
+        <a href="Homepage.dc.html#match" style="border:1px solid rgba(255,255,255,0.4);color:#fff;font-size:13.5px;font-weight:700;padding:9px 15px;border-radius:99px" style-hover="background:#fff;color:#14141A">Check my eligibility</a>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.028em;margin:0">Overview</h2>
+      <sc-for list="{{ overview }}" as="p" hint-placeholder-count="3">
+        <p style="font-size:15px;line-height:1.68;color:#4A4A55;margin:14px 0 0;text-wrap:pretty">{{ p.text }}</p>
+      </sc-for>
+
+      <h3 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.02em;margin:30px 0 0">Funding coverage</h3>
+      <div style="margin-top:14px;border:1px solid rgba(20,20,26,0.1);border-radius:16px;overflow:hidden">
+        <sc-for list="{{ funding }}" as="f" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 17px;border-bottom:1px solid rgba(20,20,26,0.07);background:{{ f.rowBg }}">
+            <span style="width:20px;height:20px;border-radius:99px;background:{{ f.dotBg }};color:{{ f.dotFg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0">{{ f.mark }}</span>
+            <span style="flex:1;font-size:14.5px;font-weight:700">{{ f.label }}</span>
+            <span style="font-size:14.5px;font-weight:800;color:{{ f.valueFg }};text-align:right">{{ f.value }}</span>
+          </div>
+        </sc-for>
+        <div style="display:flex;align-items:center;gap:14px;padding:16px 17px;background:#14141A;color:#fff">
+          <span style="flex:1;font-size:14.5px;font-weight:800">Total value over 24 months</span>
+          <span style="font-size:17px;font-weight:800;color:#FFCE00">≈ €31,400</span>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.02em;margin:30px 0 0">Eligibility requirements</h3>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:11px">
+        <sc-for list="{{ requirements }}" as="r" hint-placeholder-count="6">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:20px;height:20px;border-radius:6px;background:{{ r.dotBg }};color:{{ r.dotFg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;margin-top:2px">{{ r.mark }}</span>
+            <div style="font-size:14.5px;line-height:1.55;color:#14141A"><strong style="font-weight:700">{{ r.title }}</strong> — {{ r.detail }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.028em;margin:0">Required documents</h2>
+        <div style="font-size:13.5px;font-weight:700;color:#6B6B76">{{ docProgress }} ready</div>
+      </div>
+      <div style="margin-top:10px;height:7px;border-radius:99px;background:#F1ECE4;overflow:hidden">
+        <div style="height:100%;width:{{ docPct }};background:linear-gradient(90deg,#C8102E,#FFCE00)"></div>
+      </div>
+      <div style="margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:10px">
+        <sc-for list="{{ documents }}" as="d" hint-placeholder-count="8">
+          <button onClick="{{ d.onClick }}" style="display:flex;align-items:flex-start;gap:11px;text-align:left;background:{{ d.bg }};border:1px solid {{ d.border }};border-radius:13px;padding:14px;cursor:pointer;font-family:inherit">
+            <span style="width:19px;height:19px;border-radius:6px;border:1.5px solid {{ d.boxBorder }};background:{{ d.boxBg }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;margin-top:1px">{{ d.mark }}</span>
+            <span style="min-width:0">
+              <span style="display:block;font-size:14px;font-weight:700;color:#14141A">{{ d.label }}</span>
+              <span style="display:block;font-size:12.5px;color:#6B6B76;margin-top:3px;line-height:1.45">{{ d.note }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.028em;margin:0">Application process</h2>
+      <p style="font-size:14.5px;color:#4A4A55;margin:10px 0 0">EPOS applications go to the university running your course, not to DAAD directly.</p>
+      <div style="margin-top:22px;display:flex;flex-direction:column;gap:0">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+          <button onClick="{{ st.onClick }}" style="display:flex;gap:16px;align-items:flex-start;background:transparent;border:none;padding:0 0 18px;cursor:pointer;font-family:inherit;text-align:left;width:100%">
+            <span style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;align-self:stretch">
+              <span style="width:32px;height:32px;border-radius:99px;background:{{ st.dotBg }};color:{{ st.dotFg }};border:2px solid {{ st.dotBorder }};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">{{ st.n }}</span>
+              <span style="flex:1;width:2px;background:{{ st.lineBg }};min-height:14px;margin-top:4px"></span>
+            </span>
+            <span style="min-width:0;padding-top:4px">
+              <span style="display:block;font-size:16px;font-weight:700;color:#14141A">{{ st.title }}</span>
+              <span style="display:block;font-size:13px;font-weight:700;color:{{ st.dateFg }};margin-top:3px">{{ st.date }}</span>
+              <sc-if value="{{ st.open }}" hint-placeholder-val="{{ true }}">
+                <span style="display:block;font-size:14px;line-height:1.6;color:#4A4A55;margin-top:8px;max-width:620px">{{ st.body }}</span>
+              </sc-if>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:8px;padding:20px;border:2px solid #14141A;border-radius:18px;background:#FCFAF7;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <div style="font-size:11.5px;font-weight:800;letter-spacing:0.09em;color:#6B6B76">STEP 3 · OFFICIAL SUBMISSION</div>
+          <div style="font-size:16.5px;font-weight:800;margin-top:5px">Apply on the DAAD portal</div>
+          <div style="font-size:13px;color:#6B6B76;margin-top:4px">You leave Studienpfad. We never charge for the application itself.</div>
+        </div>
+        <a href="#sources" style="background:#14141A;color:#fff;font-size:15px;font-weight:700;padding:15px 24px;border-radius:12px;display:flex;align-items:center;gap:10px;white-space:nowrap" style-hover="background:#C8102E;color:#fff">
+          Go to official application
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+        </a>
+      </div>
+
+      <h3 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.02em;margin:30px 0 0">Important dates</h3>
+      <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:11px">
+        <sc-for list="{{ dates }}" as="d" hint-placeholder-count="4">
+          <div style="border:1px solid {{ d.border }};border-radius:14px;padding:15px;background:{{ d.bg }}">
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.07em;color:#6B6B76">{{ d.label }}</div>
+            <div style="font-size:15px;font-weight:800;margin-top:6px;color:{{ d.fg }}">{{ d.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="sources" style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.028em;margin:0">Official sources</h2>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:#F4FBF5;border:1px solid #CFE9D4;color:#1B6B36;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:99px">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#1B6B36" stroke-width="3"><path d="M20 6L9 17l-5-5"></path></svg>
+          3 sources checked
+        </span>
+      </div>
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ sources }}" as="s" hint-placeholder-count="3">
+          <a href="#sources" style="display:flex;align-items:center;gap:12px;border:1px solid rgba(20,20,26,0.1);border-radius:13px;padding:14px 16px;color:#14141A" style-hover="border-color:#14141A;color:#14141A">
+            <span style="width:30px;height:30px;border-radius:9px;background:#F1ECE4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800">{{ s.tag }}</span>
+            <span style="flex:1;min-width:0">
+              <span style="display:block;font-size:14.5px;font-weight:700">{{ s.title }}</span>
+              <span style="display:block;font-size:12.5px;color:#6B6B76;margin-top:2px">{{ s.url }}</span>
+            </span>
+            <span style="color:#C8102E;font-size:14px;font-weight:700">↗</span>
+          </a>
+        </sc-for>
+      </div>
+
+      <h3 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.02em;margin:28px 0 0">Verification history</h3>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ history }}" as="h" hint-placeholder-count="4">
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <span style="width:9px;height:9px;border-radius:99px;background:{{ h.dot }};margin-top:6px;flex-shrink:0"></span>
+            <div style="min-width:0">
+              <div style="font-size:14px;font-weight:700">{{ h.date }} — {{ h.action }}</div>
+              <div style="font-size:13px;color:#6B6B76;margin-top:2px">{{ h.note }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <button onClick="{{ openReport }}" style="margin-top:22px;display:flex;align-items:center;gap:9px;border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:999px;padding:11px 17px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#C8102E;color:#C8102E">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 8v5M12 16.5v.5"></path><circle cx="12" cy="12" r="9"></circle></svg>
+        Report incorrect information
+      </button>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,32px)">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;color:#C8102E">OPTIONAL PAID HELP</div>
+          <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.028em;margin:8px 0 0">Advisers who have placed students on EPOS</h2>
+          <p style="font-size:14px;color:#6B6B76;margin:8px 0 0;max-width:520px">Independent freelancers, not DAAD staff. Hiring one is never required to apply.</p>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px">
+        <sc-for list="{{ adviserServices }}" as="a" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(20,20,26,0.12);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:11px;background:#FCFAF7">
+            <div style="display:flex;align-items:center;gap:11px">
+              <span style="width:38px;height:38px;border-radius:99px;background:#F3EFE8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">{{ a.initials }}</span>
+              <span style="min-width:0">
+                <span style="display:block;font-size:14.5px;font-weight:700">{{ a.name }}</span>
+                <span style="display:block;font-size:12.5px;color:#6B6B76;margin-top:2px">★ {{ a.rating }} · {{ a.reviews }} reviews</span>
+              </span>
+            </div>
+            <div style="font-size:14px;font-weight:700">{{ a.service }}</div>
+            <div style="font-size:13px;color:#4A4A55;line-height:1.5">{{ a.body }}</div>
+            <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px">
+              <span style="font-size:15px;font-weight:800">{{ a.price }}</span>
+              <a href="Homepage.dc.html#advisers" style="border:1.5px solid #C8102E;color:#C8102E;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px" style-hover="background:#C8102E;color:#fff">Book service</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+      <div style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:26px">
+        <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.025em;margin:0 0 14px">Similar scholarships</h2>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ similar }}" as="s" hint-placeholder-count="4">
+            <a href="Scholarship Directory.dc.html" style="display:flex;align-items:center;gap:12px;border:1px solid rgba(20,20,26,0.1);border-radius:13px;padding:13px 15px;color:#14141A" style-hover="border-color:#14141A;color:#14141A">
+              <span style="width:34px;height:34px;border-radius:10px;background:#F3EFE8;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;flex-shrink:0">{{ s.initials }}</span>
+              <span style="flex:1;min-width:0">
+                <span style="display:block;font-size:14px;font-weight:700;line-height:1.35">{{ s.title }}</span>
+                <span style="display:block;font-size:12.5px;color:#6B6B76;margin-top:3px">{{ s.meta }}</span>
+              </span>
+              <span style="font-size:12.5px;font-weight:800;color:{{ s.matchFg }};white-space:nowrap">{{ s.match }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:26px">
+        <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.025em;margin:0 0 14px">Guides for this application</h2>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ guides }}" as="g" hint-placeholder-count="4">
+            <a href="Homepage.dc.html#guides" style="display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:#14141A" style-hover="color:#C8102E">
+              <span style="color:#C8102E">→</span>
+              <span style="flex:1">{{ g.title }}</span>
+              <span style="font-size:12.5px;font-weight:600;color:#6B6B76">{{ g.meta }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside style="position:sticky;top:96px;display:flex;flex-direction:column;gap:14px;min-width:0">
+    <div style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:20px;padding:22px;box-shadow:0 14px 34px rgba(20,20,26,0.08)">
+      <div style="font-size:11.5px;font-weight:800;letter-spacing:0.09em;color:#6B6B76">APPLICATION CLOSES</div>
+      <div style="font-size:16px;font-weight:800;margin-top:6px">2 October 2026, 23:59 CEST</div>
+      <div style="margin-top:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px">
+        <sc-for list="{{ countdown }}" as="c" hint-placeholder-count="4">
+          <div style="background:#14141A;color:#fff;border-radius:11px;padding:10px 4px;text-align:center">
+            <div style="font-size:19px;font-weight:800;line-height:1;color:#FFCE00">{{ c.value }}</div>
+            <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.65);margin-top:4px;letter-spacing:0.05em">{{ c.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <a href="#sources" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;background:#14141A;color:#fff;font-size:15px;font-weight:700;padding:15px;border-radius:13px" style-hover="background:#C8102E;color:#fff">
+        Go to official application
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+      </a>
+      <div style="font-size:12px;color:#6B6B76;text-align:center;margin-top:9px;line-height:1.5">Free · applies on daad.de · Studienpfad takes no fee</div>
+      <div style="height:1px;background:rgba(20,20,26,0.09);margin:18px 0"></div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <sc-for list="{{ panelFacts }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13.5px">
+            <span style="color:#6B6B76;flex:1">{{ p.label }}</span>
+            <span style="font-weight:800;text-align:right">{{ p.value }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button onClick="{{ onSave }}" style="flex:1;border:1.5px solid {{ saveBorder }};background:{{ saveBg }};color:#14141A;border-radius:11px;padding:11px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">{{ saveLabel }}</button>
+        <button onClick="{{ onCompare }}" style="flex:1;border:1.5px solid {{ cmpBorder }};background:{{ cmpBg }};color:{{ cmpFg }};border-radius:11px;padding:11px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">{{ cmpLabel }}</button>
+      </div>
+    </div>
+
+    <div style="background:#FCFAF7;border:1px dashed rgba(20,20,26,0.2);border-radius:20px;padding:20px">
+      <div style="font-size:11.5px;font-weight:800;letter-spacing:0.09em;color:#C8102E">OPTIONAL · PAID</div>
+      <div style="font-size:15.5px;font-weight:700;margin-top:7px;line-height:1.4">Want a reviewer before you submit?</div>
+      <div style="font-size:13px;color:#4A4A55;margin-top:6px;line-height:1.55">An adviser reads your EPOS file against the funder's checklist. Separate from the official application above.</div>
+      <a href="Homepage.dc.html#advisers" style="margin-top:14px;display:flex;align-items:center;justify-content:center;border:1.5px solid #C8102E;color:#C8102E;font-size:14px;font-weight:700;padding:12px;border-radius:11px" style-hover="background:#C8102E;color:#fff">Browse 182 advisers · from €15</a>
+    </div>
+  </aside>
+</div>
+
+<sc-if value="{{ reportOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:70;background:rgba(20,20,26,0.55);display:flex;align-items:center;justify-content:center;padding:24px;animation:fade .18s ease both">
+    <div style="background:#fff;border-radius:22px;padding:28px;width:100%;max-width:480px;box-shadow:0 30px 70px rgba(0,0,0,0.3);animation:popIn .22s ease both">
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <div style="flex:1">
+          <div style="font-family:'Google Sans','Outfit',sans-serif;font-size:22px;font-weight:600;letter-spacing:-0.025em">Report incorrect information</div>
+          <div style="font-size:13.5px;color:#6B6B76;margin-top:6px">A human re-checks the funder's page within 48 hours.</div>
+        </div>
+        <button onClick="{{ closeReport }}" aria-label="Close" style="width:32px;height:32px;border-radius:99px;border:1px solid rgba(20,20,26,0.14);background:#fff;cursor:pointer;font-size:15px;color:#14141A;flex-shrink:0">×</button>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:9px">
+        <sc-for list="{{ reportReasons }}" as="r" hint-placeholder-count="4">
+          <button onClick="{{ r.onClick }}" style="display:flex;align-items:center;gap:11px;border:1.5px solid {{ r.border }};background:{{ r.bg }};border-radius:12px;padding:13px 15px;cursor:pointer;font-family:inherit;text-align:left">
+            <span style="width:16px;height:16px;border-radius:99px;border:1.5px solid {{ r.dotBorder }};background:{{ r.dotBg }};flex-shrink:0"></span>
+            <span style="font-size:14px;font-weight:700;color:#14141A">{{ r.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <textarea placeholder="What did you find? Paste the funder's page if you have it." style="margin-top:12px;width:100%;min-height:90px;border:1px solid rgba(20,20,26,0.15);border-radius:12px;padding:13px;font-family:inherit;font-size:14px;color:#14141A;resize:vertical;outline:none"></textarea>
+      <div style="margin-top:16px;display:flex;gap:10px;justify-content:flex-end">
+        <button onClick="{{ closeReport }}" style="border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:11px;padding:12px 18px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">Cancel</button>
+        <button onClick="{{ closeReport }}" style="border:none;background:#C8102E;color:#fff;border-radius:11px;padding:12px 20px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#14141A">Send report</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<footer style="background:#14141A;color:#fff;padding:56px 28px 28px">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:30px">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="display:flex;flex-direction:column;width:26px;height:26px;border-radius:7px;overflow:hidden">
+            <span style="flex:1;background:#fff"></span><span style="flex:1;background:#C8102E"></span><span style="flex:1;background:#FFCE00"></span>
+          </span>
+          <span style="font-family:'Google Sans','Outfit',sans-serif;font-size:19px;font-weight:600;letter-spacing:-0.02em">Studienpfad</span>
+        </div>
+        <p style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.6);margin:14px 0 0;max-width:260px">The marketplace for verified German scholarships and independent application advisers.</p>
+        <div style="margin-top:18px;display:flex;gap:9px">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+            <a href="#top" style="width:34px;height:34px;border-radius:99px;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff" style-hover="background:#FFCE00;color:#14141A;border-color:#FFCE00">{{ s.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="5">
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;color:#FFCE00">{{ c.title }}</div>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <a href="#top" style="font-size:13.5px;color:rgba(255,255,255,0.72)" style-hover="color:#FFCE00">{{ l.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.14);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+      <div style="font-size:13px;color:rgba(255,255,255,0.5)">© 2026 Studienpfad GmbH · Berlin. Independent of DAAD and all listed funders.</div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <sc-for list="{{ legal }}" as="l" hint-placeholder-count="5">
+          <a href="#top" style="font-size:13px;color:rgba(255,255,255,0.5)" style-hover="color:#FFCE00">{{ l.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320},&quot;signedIn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;activeStep&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:4,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+const DOCS = [
+  { id: 'd1', label: 'Completed DAAD application form', note: 'Downloaded from the portal, signed' },
+  { id: 'd2', label: 'Motivation letter (max 2 pages)', note: 'Must name the specific EPOS course' },
+  { id: 'd3', label: 'Academic CV in DAAD format', note: 'Tabular, dated, signed' },
+  { id: 'd4', label: 'Degree certificate + transcript', note: 'Certified translation if not EN/DE' },
+  { id: 'd5', label: 'Proof of 2 years work experience', note: 'Employer letters with dates and role' },
+  { id: 'd6', label: 'Language certificate', note: 'IELTS 6.5 / TOEFL 90 or German B2' },
+  { id: 'd7', label: 'Two letters of recommendation', note: 'One academic, one professional' },
+  { id: 'd8', label: 'Admission or pre-selection letter', note: 'From the host university, if issued' }
+];
+
+const STEPS = [
+  { n: '1', title: 'Pick an EPOS course', date: 'Now — before 2 Oct', body: 'EPOS funds a fixed list of development-related Master\u2019s programmes. Choose the course first; each one runs its own deadline inside the DAAD window.' },
+  { n: '2', title: 'Assemble the document file', date: '2–3 weeks of work', body: 'Certified translations are the usual bottleneck. Order them before you write the motivation letter, not after.' },
+  { n: '3', title: 'Submit on the DAAD portal', date: 'By 2 Oct 2026, 23:59 CEST', body: 'Upload the complete file to the DAAD portal and post hard copies to the university if your course requires them. Late uploads are rejected without review.' },
+  { n: '4', title: 'University pre-selection', date: 'Nov 2026 – Jan 2027', body: 'The host university ranks applicants and forwards its shortlist to DAAD. Some courses hold interviews at this stage.' },
+  { n: '5', title: 'DAAD selection and offer', date: 'Feb – Apr 2027', body: 'DAAD confirms funding, then issues the scholarship contract for the September 2027 intake.' }
+];
+
+const REASONS = [
+  { id: 'r1', label: 'Deadline has changed' },
+  { id: 'r2', label: 'Funding amount is wrong' },
+  { id: 'r3', label: 'Programme is no longer offered' },
+  { id: 'r4', label: 'Eligibility rules are different' },
+  { id: 'r5', label: 'Broken or redirected source link' }
+];
+
+const DEADLINE = new Date('2026-10-02T23:59:00+02:00').getTime();
+
+class Component extends DCLogic {
+  state = { saved: false, compared: false, shareOpen: false, docs: { d3: true, d6: true, d4: true }, step: null, reportOpen: false, reason: 'r1', langIdx: 0, now: Date.now() };
+
+  componentDidMount() { this.timer = setInterval(() => this.setState({ now: Date.now() }), 1000); }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  renderVals() {
+    const ink = '#14141A', red = '#C8102E', gold = '#FFCE00', green = '#1B6B36';
+    const LANGS = ['EN', 'DE', 'FR', 'ES'];
+    const diff = Math.max(0, DEADLINE - this.state.now);
+    const d = Math.floor(diff / 86400000), h = Math.floor(diff / 3600000) % 24, m = Math.floor(diff / 60000) % 60, sec = Math.floor(diff / 1000) % 60;
+    const pad = n => String(n).padStart(2, '0');
+
+    const step = this.state.step ?? (typeof this.props.activeStep === 'number' ? this.props.activeStep : 2);
+    const signedIn = this.props.signedIn !== false;
+    const doneCount = DOCS.filter(x => this.state.docs[x.id]).length;
+
+    return {
+      lang: LANGS[this.state.langIdx],
+      cycleLang: () => this.setState(s => ({ langIdx: (s.langIdx + 1) % LANGS.length })),
+
+      saveLabel: this.state.saved ? 'Saved' : 'Save',
+      saveFill: this.state.saved ? red : 'none',
+      saveStroke: this.state.saved ? red : '#6B6B76',
+      saveBg: this.state.saved ? '#FDECEF' : '#fff',
+      saveBorder: this.state.saved ? red : 'rgba(20,20,26,0.15)',
+      onSave: () => this.setState(s => ({ saved: !s.saved })),
+
+      cmpLabel: this.state.compared ? 'In compare' : 'Compare',
+      cmpBg: this.state.compared ? ink : '#fff',
+      cmpFg: this.state.compared ? '#fff' : ink,
+      cmpBorder: this.state.compared ? ink : 'rgba(20,20,26,0.15)',
+      onCompare: () => this.setState(s => ({ compared: !s.compared })),
+
+      shareOpen: this.state.shareOpen,
+      toggleShare: () => this.setState(s => ({ shareOpen: !s.shareOpen })),
+      shareTargets: [{ label: 'Copy link' }, { label: 'WhatsApp' }, { label: 'Email' }, { label: 'LinkedIn' }],
+
+      keyFacts: [
+        { label: 'DEGREE LEVEL', value: "Master's", sub: '1–2 year programmes', fg: ink },
+        { label: 'FUNDING AMOUNT', value: '€992 / month', sub: '+ travel, insurance, study allowance', fg: ink },
+        { label: 'DEADLINE', value: d + ' days left', sub: '2 October 2026, 23:59 CEST', fg: red },
+        { label: 'ELIGIBLE COUNTRIES', value: '137 countries', sub: 'DAC list · Nigeria included', fg: ink },
+        { label: 'STUDY LOCATION', value: '38 German universities', sub: 'Course-specific, Germany only', fg: ink },
+        { label: 'APPLICATION METHOD', value: 'DAAD portal', sub: 'Via the host university', fg: ink }
+      ],
+
+      matchPct: signedIn ? '83%' : '—',
+      eligibilityGroups: [
+        {
+          title: 'MATCHED · 5', mark: '✓', dotBg: '#7DD694', dotFg: ink, hasAction: false,
+          items: [
+            { text: 'Nigeria is on the EPOS eligible-country list' },
+            { text: 'BEng Mechanical Engineering — relevant degree field' },
+            { text: '2 years at Lagos Water Corp meets the 2-year minimum' },
+            { text: 'IELTS 7.0 clears the 6.5 English requirement' },
+            { text: 'Degree completed within the last 6 years' }
+          ]
+        },
+        {
+          title: 'NOT MET · 1', mark: '!', dotBg: '#FF9BA8', dotFg: ink, hasAction: true, actionLabel: 'See how to fix this',
+          items: [
+            { text: 'Final grade 2:1 converts to 2.6 German scale — EPOS courses in engineering usually expect 2.5 or better' },
+            { text: 'A strong reference and relevant work record can offset this at pre-selection' }
+          ]
+        },
+        {
+          title: 'MISSING FROM PROFILE · 2', mark: '?', dotBg: gold, dotFg: ink, hasAction: true, actionLabel: 'Complete profile',
+          items: [
+            { text: 'Have you already secured admission to an EPOS course?' },
+            { text: 'Any previous DAAD funding in the last 3 years?' }
+          ]
+        }
+      ],
+
+      overview: [
+        { text: 'EPOS funds international professionals from developing and emerging countries to take a development-related Master\u2019s degree in Germany. The scholarship is built around a fixed catalogue of roughly 30 postgraduate courses — public health, water management, energy, agriculture, economics and governance — taught in English or German at 38 universities.' },
+        { text: 'It is aimed at people already working in the public sector, at NGOs or in state-owned companies, who intend to return home afterwards. Selection weighs professional relevance and development impact as heavily as grades, which is why the work-experience evidence matters more here than in a purely academic scholarship.' },
+        { text: 'Funding runs for the full length of the course, 12 to 24 months, and includes a language course in Germany before studies begin.' }
+      ],
+
+      funding: [
+        { label: 'Tuition fees', value: 'Covered in full', mark: '✓', dotBg: green, dotFg: '#fff', valueFg: ink, rowBg: '#fff' },
+        { label: 'Monthly stipend', value: '€992 / month', mark: '✓', dotBg: green, dotFg: '#fff', valueFg: ink, rowBg: '#fff' },
+        { label: 'Travel allowance', value: 'Return flight, lump sum', mark: '✓', dotBg: green, dotFg: '#fff', valueFg: ink, rowBg: '#fff' },
+        { label: 'Health, accident & liability insurance', value: 'Paid by DAAD', mark: '✓', dotBg: green, dotFg: '#fff', valueFg: ink, rowBg: '#fff' },
+        { label: 'Study & research allowance', value: '€460 one-off', mark: '✓', dotBg: green, dotFg: '#fff', valueFg: ink, rowBg: '#fff' },
+        { label: 'German language course', value: '2–6 months, pre-study', mark: '✓', dotBg: green, dotFg: '#fff', valueFg: ink, rowBg: '#fff' },
+        { label: 'Family allowance (spouse / children)', value: 'Case by case', mark: '~', dotBg: gold, dotFg: ink, valueFg: '#B4720A', rowBg: '#FFFDF5' },
+        { label: 'Rent subsidy', value: 'Not included', mark: '×', dotBg: '#E3DED5', dotFg: '#6B6B76', valueFg: '#6B6B76', rowBg: '#FCFAF7' }
+      ],
+
+      requirements: [
+        { title: 'Nationality', detail: 'a country on the DAAD list of developing and emerging countries.', mark: '✓', dotBg: green, dotFg: '#fff' },
+        { title: 'Degree', detail: "a completed Bachelor's (four years preferred) in a subject related to the course.", mark: '✓', dotBg: green, dotFg: '#fff' },
+        { title: 'Work experience', detail: 'at least two years, normally in the public sector, an NGO or a state-owned enterprise.', mark: '✓', dotBg: green, dotFg: '#fff' },
+        { title: 'Language', detail: 'IELTS 6.5 / TOEFL 90 for English courses, German B2 for German-taught courses.', mark: '✓', dotBg: green, dotFg: '#fff' },
+        { title: 'Final grade', detail: 'usually 2.5 or better on the German scale for engineering courses.', mark: '!', dotBg: '#FF9BA8', dotFg: ink },
+        { title: 'Degree age', detail: 'your last degree should not be older than six years at application.', mark: '✓', dotBg: green, dotFg: '#fff' }
+      ],
+
+      docProgress: doneCount + ' of ' + DOCS.length,
+      docPct: Math.round((doneCount / DOCS.length) * 100) + '%',
+      documents: DOCS.map(x => {
+        const on = !!this.state.docs[x.id];
+        return {
+          label: x.label, note: x.note, mark: on ? '✓' : '',
+          bg: on ? '#F4FBF5' : '#fff', border: on ? '#CFE9D4' : 'rgba(20,20,26,0.1)',
+          boxBg: on ? green : '#fff', boxBorder: on ? green : 'rgba(20,20,26,0.22)',
+          onClick: () => this.setState(s => ({ docs: Object.assign({}, s.docs, { [x.id]: !s.docs[x.id] }) }))
+        };
+      }),
+
+      steps: STEPS.map((st, i) => {
+        const active = step === i;
+        const done = i < step;
+        return {
+          n: st.n, title: st.title, date: st.date, body: st.body, open: active,
+          dotBg: active ? red : done ? ink : '#fff',
+          dotFg: active || done ? '#fff' : '#6B6B76',
+          dotBorder: active ? red : done ? ink : 'rgba(20,20,26,0.2)',
+          lineBg: done ? ink : 'rgba(20,20,26,0.12)',
+          dateFg: active ? red : '#6B6B76',
+          onClick: () => this.setState({ step: i })
+        };
+      }),
+
+      dates: [
+        { label: 'APPLICATION OPENS', value: '1 June 2026', bg: '#fff', border: 'rgba(20,20,26,0.1)', fg: ink },
+        { label: 'SUBMISSION DEADLINE', value: '2 October 2026', bg: '#FDECEF', border: '#F5C6CF', fg: red },
+        { label: 'PRE-SELECTION RESULT', value: 'January 2027', bg: '#fff', border: 'rgba(20,20,26,0.1)', fg: ink },
+        { label: 'COURSE STARTS', value: 'September 2027', bg: '#fff', border: 'rgba(20,20,26,0.1)', fg: ink }
+      ],
+
+      sources: [
+        { tag: 'DAAD', title: 'EPOS programme page — official conditions', url: 'daad.de/en/studying-in-germany/scholarships/epos' },
+        { tag: 'PDF', title: 'Course catalogue 2027 intake (PDF, 2.4 MB)', url: 'daad.de/medien/epos-courses-2027.pdf' },
+        { tag: 'LIST', title: 'DAAD list of eligible countries', url: 'daad.de/en/eligible-countries' }
+      ],
+      history: [
+        { date: '3 Sept 2026', action: 'Re-verified, no changes', note: 'Deadline, stipend and country list confirmed against daad.de', dot: green },
+        { date: '14 Aug 2026', action: 'Stipend updated', note: '€934 → €992 per month, following the DAAD 2026 rate revision', dot: gold },
+        { date: '2 June 2026', action: 'Round opened', note: 'Course catalogue for the 2027 intake published', dot: ink },
+        { date: '11 Mar 2026', action: 'Listing created', note: 'Verified by editorial team, two sources', dot: '#C7C2B8' }
+      ],
+
+      adviserServices: [
+        { initials: 'NK', name: 'Nadia K.', rating: '4.9', reviews: '312', service: 'EPOS motivation letter coaching', body: 'Ex-DAAD reviewer. Three revision rounds against the EPOS selection criteria.', price: '€45' },
+        { initials: 'AM', name: 'Ahmed M.', rating: '4.9', reviews: '204', service: 'DAAD-format CV rewrite', body: 'Tabular CV in the exact layout DAAD expects, plus ATS-clean export.', price: '€25' },
+        { initials: 'PS', name: 'Priya S.', rating: '5.0', reviews: '241', service: 'Full document file review', body: 'Checks translations, certification and completeness before you upload.', price: '€60' }
+      ],
+
+      similar: [
+        { initials: 'HS', title: 'DAAD Helmut-Schmidt Public Policy', meta: "Master's · Fully funded · €992/mo", match: '91%', matchFg: green },
+        { initials: 'KA', title: 'KAAD Scholarship for Developing Countries', meta: 'Master / PhD · €1,050/mo', match: '74%', matchFg: '#B4720A' },
+        { initials: 'ES', title: 'Erasmus Mundus Joint Master', meta: "Master's · €1,400/mo + fees", match: '84%', matchFg: green },
+        { initials: 'HB', title: 'Heinrich Böll Foundation Scholarship', meta: 'Master / PhD · €934/mo', match: '88%', matchFg: green }
+      ],
+      guides: [
+        { title: 'The DAAD application, page by page', meta: '18 min' },
+        { title: 'Writing an EPOS motivation letter', meta: '10 min' },
+        { title: 'Certified translations: what DAAD accepts', meta: '7 min' },
+        { title: 'Applying from Nigeria: APS, visa, funding', meta: '9 min' }
+      ],
+
+      countdown: [
+        { value: String(d), label: 'DAYS' },
+        { value: pad(h), label: 'HRS' },
+        { value: pad(m), label: 'MIN' },
+        { value: pad(sec), label: 'SEC' }
+      ],
+      panelFacts: [
+        { label: 'Status', value: 'Open' },
+        { label: 'Last verified', value: '3 Sept 2026' },
+        { label: 'Applications', value: '≈ 4,100 / year' },
+        { label: 'Places', value: '≈ 320' },
+        { label: 'Your match', value: '83%' }
+      ],
+
+      reportOpen: this.state.reportOpen,
+      openReport: () => this.setState({ reportOpen: true }),
+      closeReport: () => this.setState({ reportOpen: false }),
+      reportReasons: REASONS.map(r => {
+        const on = this.state.reason === r.id;
+        return {
+          label: r.label,
+          bg: on ? '#FDECEF' : '#fff', border: on ? red : 'rgba(20,20,26,0.12)',
+          dotBg: on ? red : '#fff', dotBorder: on ? red : 'rgba(20,20,26,0.25)',
+          onClick: () => this.setState({ reason: r.id })
+        };
+      }),
+
+      socials: [{ label: 'IG' }, { label: 'LI' }, { label: 'YT' }, { label: 'X' }],
+      footerCols: [
+        { title: 'SCHOLARSHIPS', links: [{ label: 'By degree level' }, { label: 'By field of study' }, { label: 'Fully funded' }, { label: 'Closing soon' }, { label: 'By university' }] },
+        { title: 'ADVISER SERVICES', links: [{ label: 'CV review' }, { label: 'Eligibility checks' }, { label: 'Application coaching' }, { label: 'Interview prep' }, { label: 'Become an adviser' }] },
+        { title: 'RESOURCES', links: [{ label: 'Application guides' }, { label: 'FAQs' }, { label: 'Study in Germany' }, { label: 'Visa & blocked account' }, { label: 'CV Builder' }] },
+        { title: 'COMPANY', links: [{ label: 'About us' }, { label: 'Contact' }, { label: 'Careers' }, { label: 'Press' }] },
+        { title: 'TRUST & LEGAL', links: [{ label: 'Adviser policy' }, { label: 'Terms of service' }, { label: 'Privacy' }, { label: 'Cookies' }, { label: 'Refund policy' }] }
+      ],
+      legal: [{ label: 'Adviser policy' }, { label: 'Terms' }, { label: 'Privacy' }, { label: 'Cookies' }, { label: 'Refunds' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

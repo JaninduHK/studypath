@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF7F2; color: #14141A; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #C8102E; text-decoration: none; }
+  a:hover { color: #14141A; }
+  @keyframes popIn { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  ::selection { background: #FFCE00; color: #14141A; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#FAF7F2">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(250,247,242,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,20,26,0.09)">
+  <div style="max-width:1320px;margin:0 auto;padding:12px 28px;min-height:72px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px">
+    <a href="Homepage.dc.html" style="display:flex;align-items:center;gap:10px;color:#14141A">
+      <span style="display:flex;flex-direction:column;width:26px;height:26px;border-radius:7px;overflow:hidden;box-shadow:0 1px 0 rgba(20,20,26,0.15)">
+        <span style="flex:1;background:#14141A"></span>
+        <span style="flex:1;background:#C8102E"></span>
+        <span style="flex:1;background:#FFCE00"></span>
+      </span>
+      <span style="font-family:'Google Sans','Outfit',system-ui,sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.025em">Studienpfad</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px 20px;margin-left:auto">
+      <a href="Scholarship Directory.dc.html" style="color:#14141A;font-size:14.5px;font-weight:600;white-space:nowrap" style-hover="color:#C8102E">Scholarships</a>
+      <a href="Adviser Directory.dc.html" style="color:#C8102E;font-size:14.5px;font-weight:700;white-space:nowrap">Find an Adviser</a>
+      <a href="Homepage.dc.html#cv" style="color:#14141A;font-size:14.5px;font-weight:600;white-space:nowrap" style-hover="color:#C8102E">CV Builder</a>
+      <a href="Homepage.dc.html#guides" style="color:#14141A;font-size:14.5px;font-weight:600;white-space:nowrap" style-hover="color:#C8102E">Application Guides</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <button aria-label="Search" title="Search" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(20,20,26,0.12);border-radius:999px;background:#fff;cursor:pointer" style-hover="border-color:#14141A;background:#FFCE00">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14141A" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      </button>
+      <button onClick="{{ cycleLang }}" aria-label="Language: {{ lang }}" title="Language: {{ lang }}" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(20,20,26,0.12);background:#fff;border-radius:999px;cursor:pointer" style-hover="border-color:#14141A;background:#FFCE00">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14141A" stroke-width="1.9"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"></path></svg>
+      </button>
+      <span style="display:flex;align-items:center;gap:9px;padding:5px 12px 5px 5px;border:1px solid rgba(20,20,26,0.12);border-radius:999px;background:#fff">
+        <span style="width:28px;height:28px;border-radius:99px;background:#14141A;color:#FFCE00;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800">AO</span>
+        <span style="font-size:13.5px;font-weight:700;white-space:nowrap">Amara</span>
+      </span>
+    </div>
+  </div>
+</header>
+
+<div id="top" style="max-width:1320px;margin:0 auto;padding:22px 28px 0">
+  <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#6B6B76;flex-wrap:wrap">
+    <a href="Homepage.dc.html" style="color:#6B6B76;font-weight:600">Home</a><span>/</span>
+    <a href="Adviser Directory.dc.html" style="color:#6B6B76;font-weight:600">Advisers</a><span>/</span>
+    <span style="color:#14141A;font-weight:700">Nadia K.</span>
+  </div>
+</div>
+
+<div style="max-width:1320px;margin:0 auto;padding:20px 28px 120px;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,352px);gap:30px;align-items:start">
+
+  <main style="min-width:0;display:flex;flex-direction:column;gap:20px">
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;overflow:hidden">
+      <div style="height:6px;background:linear-gradient(90deg,#14141A 33%,#C8102E 33% 66%,#FFCE00 66%)"></div>
+      <div style="padding:clamp(22px,2.6vw,30px)">
+        <div style="display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap">
+          <div style="position:relative;width:118px;height:118px;flex-shrink:0">
+            <div style="width:118px;height:118px;border-radius:99px;overflow:hidden;border:3px solid #FFCE00">
+              <image-slot id="adviser-nadia" shape="circle" placeholder="Drop profile photo"></image-slot>
+            </div>
+            <span style="position:absolute;right:2px;bottom:2px;width:22px;height:22px;border-radius:99px;background:#1B6B36;border:3px solid #fff"></span>
+          </div>
+          <div style="flex:1;min-width:260px">
+            <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+              <h1 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:clamp(28px,3vw,36px);line-height:1.05;letter-spacing:-0.03em;margin:0">Nadia K.</h1>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 2l2.3 2.1 3.1-.3.9 3 2.7 1.6-1.2 2.9 1.2 2.9-2.7 1.6-.9 3-3.1-.3L12 22l-2.3-2.1-3.1.3-.9-3L3 15.6l1.2-2.9L3 9.8l2.7-1.6.9-3 3.1.3z"></path><path d="M8.8 12.4l2.2 2.2 4.2-4.4" stroke="#fff" stroke-width="2" fill="none"></path></svg>
+            </div>
+            <div style="font-size:16px;font-weight:600;color:#4A4A55;margin-top:7px">Former DAAD programme reviewer · Scholarship application coach</div>
+            <div style="display:flex;gap:7px;margin-top:13px;flex-wrap:wrap">
+              <sc-for list="{{ badges }}" as="b" hint-placeholder-count="4">
+                <span style="display:inline-flex;align-items:center;gap:5px;background:#F4FBF5;border:1px solid #CFE9D4;color:#1B6B36;font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:99px">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1B6B36" stroke-width="3"><path d="M20 6L9 17l-5-5"></path></svg>
+                  {{ b.label }}
+                </span>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px">
+              <sc-for list="{{ headerMeta }}" as="m" hint-placeholder-count="4">
+                <div>
+                  <div style="font-size:11px;font-weight:800;letter-spacing:0.07em;color:#6B6B76">{{ m.label }}</div>
+                  <div style="font-size:14px;font-weight:700;margin-top:4px;line-height:1.4;color:{{ m.fg }}">{{ m.value }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(20,20,26,0.08);display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+        <sc-for list="{{ performance }}" as="p" hint-placeholder-count="4">
+          <div style="padding:18px 20px;border-right:1px solid rgba(20,20,26,0.07)">
+            <div style="font-family:'Google Sans','Outfit',sans-serif;font-size:26px;font-weight:600;letter-spacing:-0.02em;color:{{ p.fg }}">{{ p.value }}</div>
+            <div style="font-size:12.5px;color:#6B6B76;margin-top:3px;font-weight:600">{{ p.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,30px)">
+      <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:24px;letter-spacing:-0.028em;margin:0">About Nadia</h2>
+      <sc-for list="{{ about }}" as="p" hint-placeholder-count="3">
+        <p style="font-size:15px;line-height:1.68;color:#4A4A55;margin:13px 0 0;text-wrap:pretty">{{ p.text }}</p>
+      </sc-for>
+
+      <h3 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.02em;margin:26px 0 0">Specializations</h3>
+      <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+        <sc-for list="{{ specialisations }}" as="s" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(20,20,26,0.1);border-radius:14px;padding:16px">
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.07em;color:#C8102E">{{ s.label }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+              <sc-for list="{{ s.items }}" as="i" hint-placeholder-count="3">
+                <span style="font-size:12.5px;font-weight:700;background:#F1ECE4;padding:5px 10px;border-radius:8px">{{ i.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.02em;margin:26px 0 0">Qualifications and experience</h3>
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:0">
+        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="4">
+          <div style="display:flex;gap:15px;align-items:flex-start;padding-bottom:18px">
+            <span style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;align-self:stretch">
+              <span style="width:11px;height:11px;border-radius:99px;background:{{ e.dot }};margin-top:5px"></span>
+              <span style="flex:1;width:2px;background:rgba(20,20,26,0.12);min-height:16px;margin-top:4px"></span>
+            </span>
+            <div style="min-width:0">
+              <div style="font-size:12px;font-weight:800;letter-spacing:0.06em;color:#6B6B76">{{ e.period }}</div>
+              <div style="font-size:15.5px;font-weight:700;margin-top:4px">{{ e.role }}</div>
+              <div style="font-size:14px;color:#4A4A55;line-height:1.58;margin-top:5px;max-width:620px">{{ e.body }}</div>
+              <sc-if value="{{ e.verified }}" hint-placeholder-val="{{ false }}">
+                <span style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:#F4FBF5;border:1px solid #CFE9D4;color:#1B6B36;font-size:11px;font-weight:800;padding:4px 9px;border-radius:99px">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1B6B36" stroke-width="3"><path d="M20 6L9 17l-5-5"></path></svg>
+                  Document verified by Studienpfad
+                </span>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="services" style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,30px)">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div>
+          <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:24px;letter-spacing:-0.028em;margin:0">Service packages</h2>
+          <p style="font-size:13.5px;color:#6B6B76;margin:7px 0 0">One job at a time. Scope and revision rounds are fixed before payment.</p>
+        </div>
+        <div style="display:flex;gap:5px;background:#F1ECE4;padding:4px;border-radius:999px">
+          <sc-for list="{{ packageTabs }}" as="t" hint-placeholder-count="3">
+            <button onClick="{{ t.onClick }}" style="border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;border:2px solid #14141A;border-radius:18px;overflow:hidden">
+        <div style="padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+          <div>
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:#C8102E">{{ pkg.tag }}</div>
+            <div style="font-family:'Google Sans','Outfit',sans-serif;font-size:22px;font-weight:600;letter-spacing:-0.025em;margin-top:8px">{{ pkg.name }}</div>
+            <p style="font-size:14px;line-height:1.6;color:#4A4A55;margin:10px 0 0">{{ pkg.scope }}</p>
+            <div style="margin-top:16px;display:flex;flex-direction:column;gap:9px">
+              <div style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:#6B6B76">YOU RECEIVE</div>
+              <sc-for list="{{ pkg.deliverables }}" as="d" hint-placeholder-count="4">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                  <span style="width:18px;height:18px;border-radius:99px;background:#1B6B36;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;margin-top:2px">✓</span>
+                  <span style="font-size:14px;line-height:1.5;color:#14141A">{{ d.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ pkg.facts }}" as="f" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:10px;border:1px solid rgba(20,20,26,0.1);border-radius:12px;padding:12px 14px">
+                  <span style="font-size:13px;color:#6B6B76;font-weight:700;flex:1">{{ f.label }}</span>
+                  <span style="font-size:14px;font-weight:800;text-align:right">{{ f.value }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:16px;padding:18px;background:#FCFAF7;border:1px solid rgba(20,20,26,0.1);border-radius:14px">
+              <div style="display:flex;align-items:baseline;gap:8px">
+                <span style="font-family:'Google Sans','Outfit',sans-serif;font-size:32px;font-weight:600;letter-spacing:-0.03em">{{ pkg.price }}</span>
+                <span style="font-size:13px;color:#6B6B76;font-weight:700">fixed price</span>
+              </div>
+              <button style="margin-top:14px;width:100%;background:#C8102E;color:#fff;border:none;border-radius:12px;padding:15px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer" style-hover="background:#14141A">Order Service</button>
+              <div style="font-size:12px;color:#6B6B76;text-align:center;margin-top:9px;line-height:1.5">Held in escrow until you approve · 14-day dispute window</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <sc-if value="{{ showAvailability }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:18px;border:1px solid rgba(20,20,26,0.1);border-radius:16px;padding:18px">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:#6B6B76">AVAILABILITY · NEXT 10 DAYS</span>
+          <span style="font-size:12.5px;color:#4A4A55">Takes 4 active bookings at a time · 2 slots open</span>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ availability }}" as="d" hint-placeholder-count="10">
+            <div style="min-width:52px;border:1px solid {{ d.border }};background:{{ d.bg }};border-radius:11px;padding:9px 6px;text-align:center">
+              <div style="font-size:10.5px;font-weight:700;color:{{ d.labelFg }}">{{ d.dow }}</div>
+              <div style="font-size:14px;font-weight:800;margin-top:2px;color:{{ d.fg }}">{{ d.day }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,30px)">
+      <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:24px;letter-spacing:-0.028em;margin:0">Portfolio samples</h2>
+      <p style="font-size:13.5px;color:#6B6B76;margin:7px 0 0">Anonymised with the students' written permission. Names and institutions removed.</p>
+      <div style="margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px">
+        <sc-for list="{{ portfolio }}" as="p" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(20,20,26,0.1);border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:132px;background:#F3EFE8;position:relative">
+              <image-slot id="{{ p.slotId }}" shape="rect" placeholder="Drop sample page"></image-slot>
+            </div>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:7px;flex:1">
+              <div style="font-size:11px;font-weight:800;letter-spacing:0.07em;color:#C8102E">{{ p.kind }}</div>
+              <div style="font-size:15px;font-weight:700;line-height:1.35">{{ p.title }}</div>
+              <div style="font-size:13px;color:#4A4A55;line-height:1.5">{{ p.body }}</div>
+              <div style="margin-top:auto;padding-top:10px;font-size:12.5px;font-weight:700;color:#1B6B36">{{ p.outcome }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,30px)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap">
+        <div>
+          <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:24px;letter-spacing:-0.028em;margin:0">Verified reviews</h2>
+          <p style="font-size:13.5px;color:#6B6B76;margin:7px 0 0">312 reviews, all from bookings paid on Studienpfad.</p>
+        </div>
+        <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+          <div style="text-align:center">
+            <div style="font-family:'Google Sans','Outfit',sans-serif;font-size:40px;font-weight:600;line-height:1;letter-spacing:-0.03em">4.9</div>
+            <div style="font-size:13px;color:#FFCE00;letter-spacing:0.08em;margin-top:5px">★★★★★</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;min-width:180px">
+            <sc-for list="{{ ratingBars }}" as="r" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="font-size:12px;font-weight:700;color:#6B6B76;width:28px">{{ r.stars }}</span>
+                <span style="flex:1;height:6px;border-radius:99px;background:#F1ECE4;overflow:hidden">
+                  <span style="display:block;height:100%;width:{{ r.pct }};background:#14141A"></span>
+                </span>
+                <span style="font-size:12px;color:#6B6B76;width:32px;text-align:right">{{ r.count }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:22px;display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(20,20,26,0.1);border-radius:16px;padding:18px">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <span style="width:38px;height:38px;border-radius:99px;background:#F3EFE8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">{{ r.initials }}</span>
+              <span style="min-width:0;flex:1">
+                <span style="display:block;font-size:14.5px;font-weight:700">{{ r.name }}</span>
+                <span style="display:block;font-size:12.5px;color:#6B6B76;margin-top:2px">{{ r.meta }}</span>
+              </span>
+              <span style="font-size:12.5px;color:#FFCE00;letter-spacing:0.06em">★★★★★</span>
+            </div>
+            <p style="font-size:14.5px;line-height:1.62;color:#14141A;margin:13px 0 0;text-wrap:pretty">{{ r.text }}</p>
+            <div style="display:flex;gap:9px;margin-top:12px;flex-wrap:wrap">
+              <span style="font-size:11.5px;font-weight:700;background:#F1ECE4;padding:5px 10px;border-radius:8px">{{ r.service }}</span>
+              <span style="display:inline-flex;align-items:center;gap:5px;background:#F4FBF5;border:1px solid #CFE9D4;color:#1B6B36;font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:8px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1B6B36" stroke-width="3"><path d="M20 6L9 17l-5-5"></path></svg>
+                Paid booking
+              </span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button style="margin-top:16px;width:100%;border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:12px;padding:13px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">Show all 312 reviews</button>
+    </section>
+
+    <section style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:22px;padding:clamp(22px,2.6vw,30px)">
+      <h2 style="font-family:'Google Sans','Outfit',sans-serif;font-weight:600;font-size:24px;letter-spacing:-0.028em;margin:0">Policies and disclaimers</h2>
+      <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px">
+        <sc-for list="{{ policies }}" as="p" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(20,20,26,0.1);border-radius:14px;padding:16px">
+            <div style="font-size:14px;font-weight:700">{{ p.title }}</div>
+            <div style="font-size:13px;color:#4A4A55;line-height:1.56;margin-top:5px">{{ p.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:18px;padding:16px 18px;border:1px solid #F5C6CF;background:#FDECEF;border-radius:14px;font-size:13.5px;line-height:1.6;color:#14141A">
+        <strong style="font-weight:800">Independent adviser.</strong> Nadia is a freelancer on Studienpfad, not an employee, and not affiliated with DAAD, any foundation or any university. No adviser can guarantee admission, funding or a visa. Hiring an adviser is never required to apply for any scholarship listed on this site.
+      </div>
+      <button onClick="{{ openReport }}" style="margin-top:18px;display:flex;align-items:center;gap:9px;border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:999px;padding:11px 17px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:#C8102E;color:#C8102E">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 8v5M12 16.5v.5"></path><circle cx="12" cy="12" r="9"></circle></svg>
+        Report this profile
+      </button>
+    </section>
+  </main>
+
+  <aside style="position:sticky;top:96px;display:flex;flex-direction:column;gap:14px;min-width:0">
+    <div style="background:#fff;border:1px solid rgba(20,20,26,0.1);border-radius:20px;padding:22px;box-shadow:0 14px 34px rgba(20,20,26,0.08)">
+      <div style="display:flex;align-items:baseline;gap:8px">
+        <span style="font-size:12px;font-weight:800;letter-spacing:0.08em;color:#6B6B76">STARTING AT</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px">
+        <span style="font-family:'Google Sans','Outfit',sans-serif;font-size:34px;font-weight:600;letter-spacing:-0.03em">€25</span>
+        <span style="font-size:13.5px;color:#6B6B76;font-weight:700">· 4 services</span>
+      </div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:9px">
+        <sc-for list="{{ sidebarFacts }}" as="f" hint-placeholder-count="5">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13.5px">
+            <span style="color:#6B6B76;flex:1">{{ f.label }}</span>
+            <span style="font-weight:800;text-align:right;color:{{ f.fg }}">{{ f.value }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:14px;padding:12px 14px;background:#F4FBF5;border:1px solid #CFE9D4;border-radius:12px;display:flex;align-items:center;gap:9px">
+        <span style="width:8px;height:8px;border-radius:99px;background:#1B6B36;flex-shrink:0"></span>
+        <span style="font-size:13px;font-weight:700;color:#1B6B36">Available now · 2 of 4 slots open</span>
+      </div>
+      <a href="#services" style="margin-top:16px;display:flex;align-items:center;justify-content:center;background:#C8102E;color:#fff;font-size:15px;font-weight:700;padding:15px;border-radius:13px" style-hover="background:#14141A;color:#fff">Order a service</a>
+      <button style="margin-top:9px;width:100%;border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:13px;padding:14px;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer" style-hover="border-color:#14141A">Message Nadia</button>
+      <div style="font-size:12px;color:#6B6B76;text-align:center;margin-top:10px;line-height:1.5">Free to message · replies in under 2 hours</div>
+      <div style="height:1px;background:rgba(20,20,26,0.09);margin:16px 0"></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ sidebarServices }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+            <span style="flex:1;font-weight:600">{{ s.label }}</span>
+            <span style="font-weight:800">{{ s.price }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#FCFAF7;border:1px dashed rgba(20,20,26,0.2);border-radius:20px;padding:18px">
+      <div style="font-size:14.5px;font-weight:700">Not sure which service you need?</div>
+      <div style="font-size:13px;color:#4A4A55;margin-top:6px;line-height:1.55">Send your scholarship shortlist and Nadia will say which stage needs work — free, no obligation.</div>
+      <button style="margin-top:12px;width:100%;border:1.5px solid #14141A;background:#fff;color:#14141A;border-radius:11px;padding:12px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="background:#FFCE00">Ask a question</button>
+    </div>
+  </aside>
+</div>
+
+<sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid rgba(20,20,26,0.12);box-shadow:0 -8px 24px rgba(20,20,26,0.1);padding:12px 18px;display:flex;align-items:center;gap:12px">
+    <div style="min-width:0">
+      <div style="font-size:11px;font-weight:800;letter-spacing:0.07em;color:#6B6B76">FROM</div>
+      <div style="font-size:19px;font-weight:800;line-height:1.1">€25</div>
+    </div>
+    <button style="flex:0 0 auto;border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:12px;padding:13px 15px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">Message</button>
+    <a href="#services" style="flex:1;text-align:center;background:#C8102E;color:#fff;font-size:15px;font-weight:700;padding:14px;border-radius:12px" style-hover="background:#14141A;color:#fff">Order a service</a>
+  </div>
+</sc-if>
+
+<sc-if value="{{ reportOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:70;background:rgba(20,20,26,0.55);display:flex;align-items:center;justify-content:center;padding:24px;animation:fade .18s ease both">
+    <div style="background:#fff;border-radius:22px;padding:28px;width:100%;max-width:470px;box-shadow:0 30px 70px rgba(0,0,0,0.3);animation:popIn .22s ease both">
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <div style="flex:1">
+          <div style="font-family:'Google Sans','Outfit',sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.025em">Report this profile</div>
+          <div style="font-size:13.5px;color:#6B6B76;margin-top:6px">Trust & safety reviews every report within 48 hours.</div>
+        </div>
+        <button onClick="{{ closeReport }}" aria-label="Close" style="width:32px;height:32px;border-radius:99px;border:1px solid rgba(20,20,26,0.14);background:#fff;cursor:pointer;font-size:15px;color:#14141A;flex-shrink:0">×</button>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:9px">
+        <sc-for list="{{ reportReasons }}" as="r" hint-placeholder-count="4">
+          <button onClick="{{ r.onClick }}" style="display:flex;align-items:center;gap:11px;border:1.5px solid {{ r.border }};background:{{ r.bg }};border-radius:12px;padding:13px 15px;cursor:pointer;font-family:inherit;text-align:left">
+            <span style="width:16px;height:16px;border-radius:99px;border:1.5px solid {{ r.dotBorder }};background:{{ r.dotBg }};flex-shrink:0"></span>
+            <span style="font-size:14px;font-weight:700;color:#14141A">{{ r.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <textarea placeholder="Add any detail that helps us investigate." style="margin-top:12px;width:100%;min-height:86px;border:1px solid rgba(20,20,26,0.15);border-radius:12px;padding:13px;font-family:inherit;font-size:14px;color:#14141A;resize:vertical;outline:none"></textarea>
+      <div style="margin-top:16px;display:flex;gap:10px;justify-content:flex-end">
+        <button onClick="{{ closeReport }}" style="border:1.5px solid rgba(20,20,26,0.15);background:#fff;color:#14141A;border-radius:11px;padding:12px 18px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">Cancel</button>
+        <button onClick="{{ closeReport }}" style="border:none;background:#C8102E;color:#fff;border-radius:11px;padding:12px 20px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#14141A">Send report</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<footer style="background:#14141A;color:#fff;padding:56px 28px 28px">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:30px">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="display:flex;flex-direction:column;width:26px;height:26px;border-radius:7px;overflow:hidden">
+            <span style="flex:1;background:#fff"></span><span style="flex:1;background:#C8102E"></span><span style="flex:1;background:#FFCE00"></span>
+          </span>
+          <span style="font-family:'Google Sans','Outfit',sans-serif;font-size:19px;font-weight:600;letter-spacing:-0.02em">Studienpfad</span>
+        </div>
+        <p style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.6);margin:14px 0 0;max-width:260px">The marketplace for verified German scholarships and independent application advisers.</p>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="5">
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;color:#FFCE00">{{ c.title }}</div>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <a href="#top" style="font-size:13.5px;color:rgba(255,255,255,0.72)" style-hover="color:#FFCE00">{{ l.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.14);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+      <div style="font-size:13px;color:rgba(255,255,255,0.5)">© 2026 Studienpfad GmbH · Berlin. Advisers are independent freelancers, not employees.</div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <sc-for list="{{ legal }}" as="l" hint-placeholder-count="5">
+          <a href="#top" style="font-size:13px;color:rgba(255,255,255,0.5)" style-hover="color:#FFCE00">{{ l.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320},&quot;defaultPackage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;letter&quot;,&quot;eligibility&quot;,&quot;full&quot;],&quot;default&quot;:&quot;letter&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+const PACKAGES = [
+  {
+    key: 'letter', label: 'Motivation letter', tag: 'MOST BOOKED · 186 ORDERS', name: 'Motivation-letter coaching',
+    scope: 'For one named scholarship or course. You send a draft and the call for applications; we work the letter against that funder\u2019s published selection criteria until it answers them explicitly.',
+    deliverables: [
+      { label: 'Line-by-line written feedback on your draft' },
+      { label: '45-minute video call to rebuild the argument' },
+      { label: 'Two further revision rounds in writing' },
+      { label: 'A criteria checklist you can reuse for other funders' }
+    ],
+    facts: [{ label: 'Delivery time', value: '4 days' }, { label: 'Revision rounds', value: '2 included' }, { label: 'Video call', value: '45 min' }, { label: 'Languages', value: 'EN / DE / AR' }],
+    price: '€45'
+  },
+  {
+    key: 'eligibility', label: 'Eligibility check', tag: 'FASTEST · 1 DAY', name: 'Eligibility assessment',
+    scope: 'A written verdict on up to five scholarships: whether you qualify today, what would disqualify you, and what you could change before the deadline.',
+    deliverables: [
+      { label: 'Written assessment of up to 5 scholarships' },
+      { label: 'Rule-by-rule verdict with the funder\u2019s own wording' },
+      { label: 'A list of gaps ranked by how fixable they are' }
+    ],
+    facts: [{ label: 'Delivery time', value: '1 day' }, { label: 'Revision rounds', value: '1 included' }, { label: 'Scholarships', value: 'up to 5' }, { label: 'Languages', value: 'EN / DE / AR' }],
+    price: '€25'
+  },
+  {
+    key: 'full', label: 'Full application', tag: 'END TO END · 6 WEEKS', name: 'Full DAAD application support',
+    scope: 'Everything from shortlist to submission for one DAAD round: document file, motivation letter, CV, references strategy and a final pre-submission check.',
+    deliverables: [
+      { label: 'Shortlist of 8–12 realistic scholarships' },
+      { label: 'Motivation letter coaching, three rounds' },
+      { label: 'DAAD-format CV rebuild' },
+      { label: 'Document and translation audit' },
+      { label: 'Final pre-submission review 5 days before deadline' }
+    ],
+    facts: [{ label: 'Delivery time', value: '6 weeks' }, { label: 'Revision rounds', value: 'Unlimited in scope' }, { label: 'Video calls', value: '3 × 45 min' }, { label: 'Languages', value: 'EN / DE / AR' }],
+    price: '€180'
+  }
+];
+
+const REASONS = [
+  { id: 'r1', label: 'Guarantees a scholarship or visa outcome' },
+  { id: 'r2', label: 'Asked me to pay outside the platform' },
+  { id: 'r3', label: 'Credentials look false' },
+  { id: 'r4', label: 'Offered to write my application for me' },
+  { id: 'r5', label: 'Unprofessional or abusive conduct' }
+];
+
+class Component extends DCLogic {
+  state = { pkg: null, reportOpen: false, reason: 'r1', langIdx: 0, w: 1200 };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+
+  renderVals() {
+    const ink = '#14141A', red = '#C8102E', green = '#1B6B36', gold = '#FFCE00';
+    const LANGS = ['EN', 'DE', 'FR', 'ES'];
+    const pkgKey = this.state.pkg ?? (this.props.defaultPackage ?? 'letter');
+    const pkg = PACKAGES.find(p => p.key === pkgKey) || PACKAGES[0];
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed'];
+    const nums = [22, 23, 24, 25, 26, 27, 28, 29, 30, 1];
+    const full = [false, false, true, true, false, true, true, false, false, false];
+
+    return {
+      lang: LANGS[this.state.langIdx],
+      cycleLang: () => this.setState(s => ({ langIdx: (s.langIdx + 1) % LANGS.length })),
+      isNarrow: this.state.w < 860,
+      showAvailability: this.props.showAvailability !== false,
+
+      badges: [{ label: 'ID verified' }, { label: 'DAAD experience verified' }, { label: '2 references checked' }, { label: 'Top rated 2026' }],
+      headerMeta: [
+        { label: 'LOCATION', value: 'Bonn, Germany · CEST', fg: ink },
+        { label: 'LANGUAGES', value: 'German (native), English (C2), Arabic (C1)', fg: ink },
+        { label: 'LAST ACTIVE', value: '14 minutes ago', fg: green },
+        { label: 'RESPONSE TIME', value: 'Under 2 hours', fg: ink }
+      ],
+      performance: [
+        { value: '486', label: 'Completed orders', fg: ink },
+        { value: '98%', label: 'On-time completion', fg: green },
+        { value: '4.9', label: 'Rating · 312 reviews', fg: ink },
+        { value: '41%', label: 'Repeat students', fg: ink }
+      ],
+
+      about: [
+        { text: 'I spent six years at DAAD in Bonn assessing EPOS and Helmut-Schmidt applications, which means I have read roughly four thousand motivation letters and know exactly where a file loses a reviewer: page two, paragraph one, where most applicants start describing their degree instead of the problem they intend to work on.' },
+        { text: 'I now coach applicants from outside the EU through German scholarship applications. I do not write documents for students — funders ask for your voice, and reviewers can tell. I restructure the argument with you, point at the criteria you have not answered, and make you defend the weak parts before a committee does.' },
+        { text: 'I take four active bookings at a time so that every file gets read twice. If your profile genuinely does not qualify for what you are chasing, I will tell you in the first reply rather than sell you a package.' }
+      ],
+
+      specialisations: [
+        { label: 'SERVICES', items: [{ label: 'Motivation-letter coaching' }, { label: 'Eligibility assessment' }, { label: 'Interview preparation' }, { label: 'Document review' }] },
+        { label: 'DEGREE LEVELS', items: [{ label: "Master's" }, { label: 'PhD' }] },
+        { label: 'FIELDS', items: [{ label: 'Engineering' }, { label: 'Public Policy' }, { label: 'Water & Energy' }, { label: 'Development Studies' }] },
+        { label: 'SCHOLARSHIP TYPES', items: [{ label: 'DAAD EPOS' }, { label: 'Helmut-Schmidt' }, { label: 'Political foundations' }, { label: 'Erasmus Mundus' }] },
+        { label: 'STUDENT BACKGROUNDS', items: [{ label: 'Nigeria' }, { label: 'Egypt' }, { label: 'Jordan' }, { label: 'Ghana' }, { label: 'Kenya' }] }
+      ],
+
+      experience: [
+        { period: '2020 — PRESENT', role: 'Independent scholarship adviser · Studienpfad', body: '486 completed bookings, mostly EPOS and Helmut-Schmidt applicants from West Africa and the Middle East.', dot: red, verified: false },
+        { period: '2014 — 2020', role: 'Programme reviewer, DAAD Bonn', body: 'Assessed development-related postgraduate applications, sat on pre-selection panels and trained university partners on the EPOS criteria.', dot: ink, verified: true },
+        { period: '2012 — 2014', role: 'International office, Universität Bonn', body: 'Advised incoming international students on admission files, uni-assist submissions and Studienkolleg routes.', dot: ink, verified: true },
+        { period: '2012', role: 'MA Development Studies, Universität Bonn', body: 'Thesis on donor-funded scholarship schemes and return migration. Graded 1.3.', dot: '#C7C2B8', verified: true }
+      ],
+
+      packageTabs: PACKAGES.map(p => ({
+        label: p.label,
+        bg: pkgKey === p.key ? ink : 'transparent',
+        fg: pkgKey === p.key ? '#fff' : '#4A4A55',
+        onClick: () => this.setState({ pkg: p.key })
+      })),
+      pkg,
+
+      availability: days.map((dow, i) => ({
+        dow, day: String(nums[i]),
+        bg: full[i] ? '#F1ECE4' : '#F4FBF5',
+        border: full[i] ? 'rgba(20,20,26,0.1)' : '#CFE9D4',
+        fg: full[i] ? '#9A958C' : green,
+        labelFg: full[i] ? '#9A958C' : '#6B6B76'
+      })),
+
+      portfolio: [
+        { slotId: 'nadia-sample-1', kind: 'MOTIVATION LETTER', title: 'EPOS · Water Resources Management', body: 'Before-and-after of the opening two paragraphs, with the criteria each version answers marked up.', outcome: 'Student funded, 2025 intake' },
+        { slotId: 'nadia-sample-2', kind: 'ELIGIBILITY REPORT', title: 'Five-scholarship assessment, Nigerian applicant', body: 'Rule-by-rule verdict showing two qualifying programmes and why three were ruled out.', outcome: '2 applications submitted' },
+        { slotId: 'nadia-sample-3', kind: 'INTERVIEW PREP', title: 'Helmut-Schmidt panel mock', body: 'Question bank with written feedback on structure, evidence and length of answers.', outcome: 'Offer received, 2026 intake' }
+      ],
+
+      ratingBars: [
+        { stars: '5★', pct: '91%', count: '284' },
+        { stars: '4★', pct: '6%', count: '19' },
+        { stars: '3★', pct: '2%', count: '6' },
+        { stars: '2★', pct: '1%', count: '2' },
+        { stars: '1★', pct: '0%', count: '1' }
+      ],
+      reviews: [
+        { initials: 'AO', name: 'Amara O.', meta: 'Nigeria · MSc Renewable Energy, Uni Kassel · Aug 2026', service: 'Motivation-letter coaching', text: 'She rewrote nothing and changed everything. Two rounds on the argument, and the letter finally said what I actually want to do with the degree. DAAD EPOS accepted me after two previous rejections on my own.' },
+        { initials: 'MK', name: 'Mahmoud K.', meta: 'Egypt · MPP Public Policy, Erfurt · Jun 2026', service: 'Eligibility assessment', text: 'Told me in the first reply that three of my five targets were impossible with my grade, and why. Saved me six weeks of pointless work. Blunt, fast, worth far more than €25.' },
+        { initials: 'GN', name: 'Grace N.', meta: 'Kenya · MA Development Studies, Bonn · Apr 2026', service: 'Interview preparation', text: 'The mock panel was harder than the real one. She flagged that I kept answering the question I wished they had asked — that single note changed the interview.' }
+      ],
+
+      policies: [
+        { title: 'Scope and revisions', body: 'Scope is fixed in writing before payment. Revision rounds are counted per package; extra rounds are quoted separately, never billed silently.' },
+        { title: 'Delivery and delays', body: 'If I am going to miss a delivery date I say so at least 24 hours ahead and you can cancel for a full refund from escrow.' },
+        { title: 'Confidentiality', body: 'Transcripts, passports and drafts are used only for your booking and deleted 90 days after delivery. Samples are published only with written permission.' },
+        { title: 'What I will not do', body: 'Write documents from scratch in your name, contact a funder on your behalf, or promise an outcome. All three break the Studienpfad adviser policy.' }
+      ],
+
+      sidebarFacts: [
+        { label: 'Delivery from', value: '1 day', fg: ink },
+        { label: 'Response time', value: 'Under 2 hours', fg: ink },
+        { label: 'On-time completion', value: '98%', fg: green },
+        { label: 'Completed orders', value: '486', fg: ink },
+        { label: 'Repeat students', value: '41%', fg: ink }
+      ],
+      sidebarServices: [
+        { label: 'Eligibility assessment', price: '€25' },
+        { label: 'Motivation-letter coaching', price: '€45' },
+        { label: 'Interview preparation', price: '€40' },
+        { label: 'Full DAAD application support', price: '€180' }
+      ],
+
+      reportOpen: this.state.reportOpen,
+      openReport: () => this.setState({ reportOpen: true }),
+      closeReport: () => this.setState({ reportOpen: false }),
+      reportReasons: REASONS.map(r => {
+        const on = this.state.reason === r.id;
+        return {
+          label: r.label,
+          bg: on ? '#FDECEF' : '#fff', border: on ? red : 'rgba(20,20,26,0.12)',
+          dotBg: on ? red : '#fff', dotBorder: on ? red : 'rgba(20,20,26,0.25)',
+          onClick: () => this.setState({ reason: r.id })
+        };
+      }),
+
+      footerCols: [
+        { title: 'SCHOLARSHIPS', links: [{ label: 'By degree level' }, { label: 'By field of study' }, { label: 'Fully funded' }, { label: 'Closing soon' }] },
+        { title: 'ADVISER SERVICES', links: [{ label: 'CV review' }, { label: 'Eligibility checks' }, { label: 'Application coaching' }, { label: 'Become an adviser' }] },
+        { title: 'RESOURCES', links: [{ label: 'Application guides' }, { label: 'FAQs' }, { label: 'Study in Germany' }, { label: 'CV Builder' }] },
+        { title: 'COMPANY', links: [{ label: 'About us' }, { label: 'Contact' }, { label: 'Careers' }, { label: 'Press' }] },
+        { title: 'TRUST & LEGAL', links: [{ label: 'Adviser policy' }, { label: 'Terms of service' }, { label: 'Privacy' }, { label: 'Refund policy' }] }
+      ],
+      legal: [{ label: 'Adviser policy' }, { label: 'Terms' }, { label: 'Privacy' }, { label: 'Cookies' }, { label: 'Refunds' }]
+    };
+  }
+}
+</script>
+</body>
+</html>
