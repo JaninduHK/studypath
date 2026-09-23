@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Check, Clock } from "lucide-react";
 import {
   scholarshipTabs,
@@ -99,23 +100,23 @@ export function FeaturedScholarships({
                 </span>
               </div>
 
-              <a
-                href={`/scholarships/${s.slug}`}
+              <Link
+                href="/scholarships"
                 className="mt-0.5 rounded-[11px] border-[1.5px] border-ink py-[11px] text-center text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-white"
               >
                 View details
-              </a>
+              </Link>
             </div>
           ))}
         </div>
 
         <div className="mt-7 flex justify-center">
-          <a
+          <Link
             href="/scholarships"
             className="rounded-full border-[1.5px] border-input bg-card px-6 py-[13px] text-[14.5px] font-bold text-ink transition-colors hover:border-ink"
           >
             Browse all 1,842 scholarships
-          </a>
+          </Link>
         </div>
       </div>
     </section>

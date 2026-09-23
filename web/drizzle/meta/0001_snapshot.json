@@ -1,6 +1,6 @@
 {
-  "id": "c196ab11-08da-40b0-a37f-54d34071ddd1",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "e786fb7d-f069-464d-b1d1-389518af97cb",
+  "prevId": "c196ab11-08da-40b0-a37f-54d34071ddd1",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -163,7 +163,7 @@
           "name": "qualifications",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "experience_years": {
@@ -176,28 +176,28 @@
           "name": "languages",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "specialization_fields": {
           "name": "specialization_fields",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "supported_degree_levels": {
           "name": "supported_degree_levels",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "portfolio_samples": {
           "name": "portfolio_samples",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "response_time_hours": {
@@ -479,14 +479,14 @@
           "name": "preferred_subjects",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "language_qualifications": {
           "name": "language_qualifications",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "work_experience_years": {
@@ -505,7 +505,7 @@
           "name": "preferred_universities",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'[]'::jsonb"
         },
         "funding_requirement": {

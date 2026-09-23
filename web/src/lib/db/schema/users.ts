@@ -132,13 +132,14 @@ export const studentProfiles = pgTable("student_profile", {
   gpaScale: text("gpa_scale"),
   fieldOfStudy: text("field_of_study"),
   targetDegreeLevel: text("target_degree_level"),
-  preferredSubjects: jsonb("preferred_subjects").$type<string[]>().default([]),
+  preferredSubjects: jsonb("preferred_subjects").$type<string[]>().notNull().default([]),
   languageQualifications: jsonb("language_qualifications")
     .$type<{ language: string; test: string; score: string }[]>()
+    .notNull()
     .default([]),
   workExperienceYears: numeric("work_experience_years", { precision: 4, scale: 1 }),
   researchExperience: text("research_experience"),
-  preferredUniversities: jsonb("preferred_universities").$type<string[]>().default([]),
+  preferredUniversities: jsonb("preferred_universities").$type<string[]>().notNull().default([]),
   fundingRequirement: text("funding_requirement"),
 
   consentProcessingAcceptedAt: timestamp("consent_processing_accepted_at", {
@@ -165,13 +166,14 @@ export const adviserProfiles = pgTable("adviser_profile", {
   identityVerifiedAt: timestamp("identity_verified_at", { withTimezone: true }),
   verificationNotes: text("verification_notes"),
 
-  qualifications: jsonb("qualifications").$type<string[]>().default([]),
+  qualifications: jsonb("qualifications").$type<string[]>().notNull().default([]),
   experienceYears: numeric("experience_years", { precision: 4, scale: 1 }),
-  languages: jsonb("languages").$type<string[]>().default([]),
-  specializationFields: jsonb("specialization_fields").$type<string[]>().default([]),
-  supportedDegreeLevels: jsonb("supported_degree_levels").$type<string[]>().default([]),
+  languages: jsonb("languages").$type<string[]>().notNull().default([]),
+  specializationFields: jsonb("specialization_fields").$type<string[]>().notNull().default([]),
+  supportedDegreeLevels: jsonb("supported_degree_levels").$type<string[]>().notNull().default([]),
   portfolioSamples: jsonb("portfolio_samples")
     .$type<{ title: string; description: string; documentId: string | null }[]>()
+    .notNull()
     .default([]),
 
   responseTimeHours: numeric("response_time_hours", { precision: 5, scale: 1 }),

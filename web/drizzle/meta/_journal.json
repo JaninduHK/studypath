@@ -5,8 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1790064788791,
-      "tag": "0000_white_squadron_supreme",
+      "when": 1790173826421,
+      "tag": "0000_ordinary_loki",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790174424762,
+      "tag": "0001_next_winter_soldier",
       "breakpoints": true
     }
   ]

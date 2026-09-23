@@ -7,10 +7,10 @@ import { useState } from "react";
 const LANGUAGES = ["EN", "DE", "FR", "ES"] as const;
 
 const NAV_LINKS = [
-  { href: "#scholarships", label: "Scholarships" },
-  { href: "#advisers", label: "Find an Adviser" },
-  { href: "#cv", label: "CV Builder" },
-  { href: "#guides", label: "Application Guides" },
+  { href: "/scholarships", label: "Scholarships" },
+  { href: "/#advisers", label: "Find an Adviser" },
+  { href: "/#cv", label: "CV Builder" },
+  { href: "/#guides", label: "Application Guides" },
 ];
 
 export function SiteHeader() {
@@ -33,13 +33,13 @@ export function SiteHeader() {
 
         <nav className="ml-auto flex flex-wrap items-center justify-end gap-x-5 gap-y-2">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="whitespace-nowrap text-[14.5px] font-semibold text-ink transition-colors hover:text-crimson"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
